@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Stock E-commerce</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1 class="title">Tableau de bord des stocks</h1>
+            <div class="date">31 janvier 2025</div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card success" onclick="filterTable('in-stock')">
+                <div class="metric-title">Produits en stock</div>
+                <div class="metric-value">1,245</div>
+            </div>
+            <div class="metric-card warning" onclick="filterTable('low-stock')">
+                <div class="metric-title">Stock faible</div>
+                <div class="metric-value">28</div>
+            </div>
+            <div class="metric-card danger" onclick="filterTable('out-stock')">
+                <div class="metric-title">Rupture de stock</div>
+                <div class="metric-value">12</div>
+            </div>
+            <div class="metric-card info">
+                <div class="metric-title">Valeur totale</div>
+                <div class="metric-value">€124,500</div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <canvas id="stockTrendChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <canvas id="categoryPieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="products-table">
+            <div class="table-header">
+                <h2>Liste des produits</h2>
+                <input type="text" class="search-input" placeholder="Rechercher un produit..." onkeyup="searchProducts()">
+            </div>
+            <table id="productsTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Produit ↕</th>
+                        <th onclick="sortTable(1)">Catégorie ↕</th>
+                        <th onclick="sortTable(2)">Prix ↕</th>
+                        <th onclick="sortTable(3)">Stock ↕</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>iPhone 15 Pro</td>
+                        <td>Smartphones</td>
+                        <td>€1,199</td>
+                        <td>45</td>
+                        <td><span class="status in-stock">En stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Samsung Galaxy S24</td>
+                        <td>Smartphones</td>
+                        <td>€999</td>
+                        <td>8</td>
+                        <td><span class="status low-stock">Stock faible</span></td>
+                    </tr>
+                    <tr>
+                        <td>MacBook Pro M3</td>
+                        <td>Ordinateurs</td>
+                        <td>€1,999</td>
+                        <td>0</td>
+                        <td><span class="status out-stock">Rupture</span></td>
+                    </tr>
+                    <tr>
+                        <td>AirPods Pro</td>
+                        <td>Audio</td>
+                        <td>€279</td>
+                        <td>56</td>
+                        <td><span class="status in-stock">En stock</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
